@@ -50,18 +50,14 @@
              ;; Next, run the 'analysis' step where we do things like scan values of fields and update semantic types
              ;; accordingly
              (when (= scan :full)
-               [analyze/analyze-db! "analyze"])
-             ;; Finally, update cached FieldValues
-             (when (= scan :full)
-               [field-values/update-field-values! "field-values"])])))))
+               [analyze/analyze-db! "analyze"])])))))
 
 (s/defn sync-table!
   "Perform all the different sync operations synchronously for a given `table`. Since often called on a sequence of
   tables, caller should check if can connect."
   [table :- i/TableInstance]
   (sync-metadata/sync-table-metadata! table)
-  (analyze/analyze-table! table)
-  (field-values/update-field-values-for-table! table))
+  (analyze/analyze-table! table))
 
 (s/defn refingerprint-field!
   "Refingerprint a field, usually after its type changes. Checks if can connect to database, returning
