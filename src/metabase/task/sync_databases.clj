@@ -89,9 +89,7 @@
                             (do
                               (unschedule-tasks-for-db! (database/map->DatabaseInstance {:id database-id}))
                               (log/warn "Cannot update Field values for Database {0}: Database does not exist." database-id)))]
-      (if (:is_full_sync database)
-        (field-values/update-field-values! database)
-        (log/info (trs "Skipping update, automatic Field value updates are disabled for Database {0}." database-id))))))
+      (log/info (trs "Skipping update, automatic Field value updates are disabled for Database {0}." database-id))))))
 
 (jobs/defjob ^{org.quartz.DisallowConcurrentExecution true
                :doc "Update field values"}

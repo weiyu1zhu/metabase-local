@@ -32,6 +32,7 @@ export default class ActionButton extends Component {
     failedText: t`Save failed`,
     successText: t`Saved`,
     forceActiveStyle: false,
+    disabled: false,
   };
 
   componentWillUnmount() {
@@ -102,6 +103,7 @@ export default class ActionButton extends Component {
       successClassName,
       failedClassName,
       forceActiveStyle,
+      disabled,
       children,
       ...props
     } = this.props;
@@ -122,6 +124,7 @@ export default class ActionButton extends Component {
               })
         }
         onClick={this.onClick}
+        disabled={disabled}
       >
         {active ? (
           // TODO: loading spinner

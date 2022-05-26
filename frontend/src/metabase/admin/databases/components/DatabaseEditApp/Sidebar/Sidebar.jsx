@@ -61,6 +61,7 @@ const DatabaseEditAppSidebar = ({
               <ActionButton
                 actionFn={() => rescanDatabaseFields(database.id)}
                 className="Button Button--rescanFieldValues"
+                disabled={!database.is_full_sync}
                 normalText={t`Re-scan field values now`}
                 activeText={t`Starting…`}
                 failedText={t`Failed to start scan`}

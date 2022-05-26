@@ -62,8 +62,4 @@
   "Update the cached FieldValues (distinct values for categories and certain other fields that are shown
    in widgets like filters) for the Tables in DATABASE (as needed)."
   [database :- i/DatabaseInstance]
-  (when (or (:is_full_sync database)
-            (:is_on_demand database))
-    (sync-util/sync-operation :cache-field-values database (format "Cache field values in %s"
-                                                                 (sync-util/name-for-logging database))
-      (sync-util/run-sync-operation "field values scanning" database field-values-steps))))
+  (log/info "Field values update is disabled in customized version."))
